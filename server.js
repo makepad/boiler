@@ -147,6 +147,7 @@ if(process.argv[2] === undefined){
 
 var server = Http.createServer(requestHandler)
 var extHandler
+
 // lets watch this module
 var liveServerFile = serverRoot + '/nodejs.js'
 watchFiles[liveServerFile] = true

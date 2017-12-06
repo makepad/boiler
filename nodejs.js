@@ -1,4 +1,4 @@
-console.log("NodeJS server started")
+console.log("Hello on server!")
 
 exports.onRequest = function(req, res){
 	console.log("Browser is requesting:", req.url)
