@@ -24,12 +24,20 @@ exports.onRequest = function(req, res){
 
 }
 
+var allSockets = []
 exports.onSocket = function(websocket, request, header){
+	allSockets.push(websocket)
+	websocket.onClose = event=>{
+		allSockets.splice(allSockets.indexOf(websocket),1)
+	}
 	websocket.onOpen = event=>{
 		//console.log("Socket opened from ", request.headers)
 	}
 	websocket.onMessage = event=>{
 		console.log("Socket received: "+event.data)
-		websocket.send('Packet from server to ack!')
+		for(var i = 0; i < allSockets.length; i++){
+			allSockets[i].send(event.data)
+		}
+		//websocket.send('Packet from server to ack!')
 	}
 }
