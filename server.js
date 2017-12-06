@@ -138,7 +138,7 @@ function watchPoll(){
 if(process.argv[2] === undefined){
 	while(1){
 		try{
-			ChildProcess.execSync(process.argv[0]+' '+process.argv[1]+' -b',{stdio:[process.stdin, process.stdout, process.stderr]})
+			ChildProcess.execSync('"'+process.argv[0]+'" '+process.argv[1]+' -b',{stdio:[process.stdin, process.stdout, process.stderr]})
 		}
 		catch(e){
 			console.log(e)
@@ -150,7 +150,6 @@ var server = Http.createServer(requestHandler)
 var extHandler
 
 // lets watch this module
-
 watchFiles[liveServerFile] = true
 
 server.on('upgrade', upgradeHandler)

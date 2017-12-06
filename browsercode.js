@@ -1,11 +1,12 @@
 
+console.log('hello')
+
 // lets do a fetch connection using the fetch API
 fetch('/urltoget').then(response=>{
 	response.text().then(value=>{
 		console.log('Value of the response: '+value)
 	})
 })
-
 
 
 // websocket example
