@@ -2,7 +2,7 @@ let Url = require('url')
 let Crypto = require('crypto')
 let Http = require('http')
 
-function NodeWebSocket(request, socket, header){
+function WebSocket(request, socket, header){
 	if(arguments.length === 1){
 		this.initClient(request)
 	}
@@ -11,9 +11,9 @@ function NodeWebSocket(request, socket, header){
 	}
 }
 
-module.exports = NodeWebSocket
+module.exports = WebSocket
 
-var proto = NodeWebSocket.prototype
+var proto = WebSocket.prototype
 
 proto.onMessage = function(){
 }

@@ -12,6 +12,7 @@ var websocket = new WebSocket('ws://'+location.host+'/websocket')
 websocket.onopen = event=>{
 	//websocket.send('Packet from client!')
 }
+
 websocket.onmessage = event=>{
 	console.log('Received from websocket: ' + event.data)
 }

@@ -3,11 +3,12 @@
 var Http = require('http')
 var Fs = require('fs')
 var Url = require('url')
-var WebSocket = require('./websocket')
+var WebSocket = require('./serversocket')
 var ChildProcess = require('child_process')
 
 var serverPort = 2003
 var serverRoot = process.cwd()
+var liveServerFile = serverRoot + '/servercode.js'
 
 function requestHandler(req, res){
 
@@ -149,7 +150,7 @@ var server = Http.createServer(requestHandler)
 var extHandler
 
 // lets watch this module
-var liveServerFile = serverRoot + '/nodejs.js'
+
 watchFiles[liveServerFile] = true
 
 server.on('upgrade', upgradeHandler)
@@ -161,7 +162,7 @@ server.listen(serverPort, '127.0.0.1', function(err){
 	console.log('\n------- Server restarted on http://127.0.0.1 -------')
 
 	try{
-		extHandler = require('./nodejs')
+		extHandler = require(liveServerFile)
 	}
 	catch(e){
 		console.log(e)
