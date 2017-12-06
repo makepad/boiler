@@ -57,8 +57,6 @@ var script = document.currentScript;
                 var factory = new Function("require", "exports", "module", source + "\n//# sourceURL=" + location.origin + modulePath + "\n")
             }
             catch(e){
-        	console.log("EXCEPTION", e,path)
-
                 var script = document.createElement('script')
                 script.src = location.origin + modulePath
                 script.type = 'text/javascript'
