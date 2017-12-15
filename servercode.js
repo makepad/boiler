@@ -4,13 +4,29 @@ var https = require('https')
 var Url = require('url')
 
 exports.onRequest = function(req, res){
+
 	var parsed = Url.parse(req.url)
+
 	console.log("Browser is requesting:", req.url)
+
+	if(parsed.pathname === '/search'){
+		var chunks = parsed.query.split('&')
+		for(var i = 0; i < chunks.length; i++){
+			var chunk = chunks[i]
+			var parts = chunk.split('=')
+			if(parts[0] === 'q'){
+				res.writeHead(200, {'Content-Type':'text/html'})
+				res.end('<html><body>'+parts[1]+'</body></html>')
+				return true
+			}
+		}
+	}
+
 	if(parsed.pathname === '/urltoget'){
 		res.writeHead(200,{'Content-Type':'text/text'})
-		res.end('get data from server')
+		res.end('returned')
 		// lets do a forward request (play proxy)
-		// https.get('https://google.com', (get) => {
+		// https.get('https://www.google.nl', (get) => {
 		// 	get.setEncoding('utf8');
 		// 	let data = ''
 		// 	get.on('data', (chunk) => { data += chunk })

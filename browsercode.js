@@ -1,17 +1,13 @@
 
-console.log('hello')
-
 // lets do a fetch connection using the fetch API
 fetch('/urltoget').then(response=>{
 	response.text().then(value=>{
 		console.log('Value of the response: '+value)
+		//document.body.innerHTML = value.replace(/Google/g,'Frooble')
 	})
 })
 
-
 // websocket example
-
-
 document.body.innerHTML = 
 		"<input id='text' type='text'/>\n"+
 		"<input id='send' type='button' value='send'/>"
@@ -24,11 +20,11 @@ function send(){
 	textElement.value = ''
 }
 
-textElement.addEventListener('keyup',event=>{
+textElement.addEventListener('keyup', event=>{
 	if(event.keyCode===13) send()
 })
 
-sendElement.addEventListener('click',send)
+sendElement.addEventListener('click', send)
 
 var websocket = new WebSocket('ws://'+location.host+'/websocket')
 
